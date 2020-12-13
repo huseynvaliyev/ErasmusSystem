@@ -28,6 +28,7 @@ public class Department {
     }
 
     public ArrayList<String> getName() {
+        System.out.print("test");
         return name;
     }
 
