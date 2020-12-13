@@ -249,7 +249,6 @@ public class StudentPage extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         selectionTable.setBackground(new java.awt.Color(102, 102, 102));
-        selectionTable.setForeground(new java.awt.Color(255, 255, 255));
         selectionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -270,7 +269,6 @@ public class StudentPage extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        selectionTable.setGridColor(new java.awt.Color(51, 51, 51));
         selectionTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
         selectionTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
         selctionScrollPane.setViewportView(selectionTable);
@@ -364,13 +362,13 @@ public class StudentPage extends javax.swing.JFrame {
         pnlCardResult.setLayout(pnlCardResultLayout);
         pnlCardResultLayout.setHorizontalGroup(
             pnlCardResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCardResultLayout.createSequentialGroup()
-                .addContainerGap(221, Short.MAX_VALUE)
-                .addGroup(pnlCardResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(pnlCardResultLayout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addGroup(pnlCardResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(consultantName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(universityName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(165, 165, 165))
+                .addContainerGap(201, Short.MAX_VALUE))
         );
         pnlCardResultLayout.setVerticalGroup(
             pnlCardResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
