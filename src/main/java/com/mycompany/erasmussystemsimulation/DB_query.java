@@ -178,16 +178,22 @@ public class DB_query {
         }
         return department;
     }
-   /* public static void addCountry(Country country){
+    public static void addCountry(Country country){
         int  status =0;
         try{
             stmt=con.createStatement();
-            ststus =stmt.executeUpdate("")
-        
+            status =stmt.executeUpdate("INSERT INTO public.olke(ad)VALUES ("+country.getName().get(0)+")");
+            if(status!=0){
+                JOptionPane.showMessageDialog(null,"Country added");
+            }
+            else{
+                JOptionPane.showConfirmDialog(null, "Country not added");
+            }
+                
         }catch(SQLException e){
-        
+            System.out.println(e);
         }
     
-    
-    }*/
+    }
+   
 }
