@@ -27,10 +27,10 @@ public class Login extends javax.swing.JFrame {
         try {
             db_query.qosul();
             ArrayList<String> tmp= new ArrayList();
-            tmp.add("Azerbaycan");
+            tmp.add("Danimarka");
             ArrayList <Integer> tmp_id =new ArrayList<>();
             Country country = new Country(tmp, tmp_id);
-            db_query.addCountry(country);
+            //db_query.addCountry(country);
            /* db_query.getcountry();
             ArrayList <String>tmp=new ArrayList<>();
             tmp.add("Azərbaycan");
@@ -256,7 +256,7 @@ public class Login extends javax.swing.JFrame {
                         AdminPage.setVisible(true);
                     }
                     else if(Student.getPassword().equals(ppaswd.getText())){
-                        db_query.getConsultant(Student);
+                       // db_query.getConsultant(Student);
                         StudentPage student=new StudentPage();
                         setVisible(false);
                         student.setVisible(true);

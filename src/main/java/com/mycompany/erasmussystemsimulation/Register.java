@@ -7,6 +7,7 @@ package com.mycompany.erasmussystemsimulation;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,12 +53,6 @@ public class Register extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setText("jLabel1");
-
-        nameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTextFieldActionPerformed(evt);
-            }
-        });
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -189,9 +184,16 @@ public class Register extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTextFieldActionPerformed
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+            if(!nameTextField.getText().equals("") && !surnameTextField.getText().equals("")&& !studentNoTextField.getText().equals("") && !passwordField.getText().equals("")){
+                DB_query db_query = new DB_query();
+               Student student = new Student(studentNoTextField.getText(), nameTextField.getText(), surnameTextField.getText(), passwordField.getText(),0);
+               db_query.register(student);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "butun alanlar doldurmak zorunludur");
+            }
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         if(!nameTextField.getText().equals("") && !surnameTextField.getText().equals("")&& !studentNoTextField.getText().equals("") && !passwordField.getText().equals("")){
