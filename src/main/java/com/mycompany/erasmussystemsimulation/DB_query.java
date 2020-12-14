@@ -31,21 +31,6 @@ public class DB_query {
     private static final String user="postgres";
     private static final String password="Eldeyme01";
     
-
-    public static boolean Register(String name, String surname,String password ,int student_id){
-        boolean status=false;
-        try {
-            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("Select * from ogrenciler where ogrenci_numarasi="+student_id);
-            if(rs.next())
-                System.out.print("kullanici var");
-        } catch (SQLException ex) {
-            Logger.getLogger(DB_query.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-        return status;
-    }
     public  static void qosul() throws SQLException{
         try {
             con = DriverManager.getConnection(url,user,password);
@@ -72,7 +57,7 @@ public class DB_query {
 
         return Student;
     }
-    public static void  register(Student student){
+    public static void register(Student student){
         int status=0;
         try{
             stmt=con.createStatement();
