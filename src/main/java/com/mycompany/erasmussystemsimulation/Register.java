@@ -81,7 +81,7 @@ public class Register extends javax.swing.JFrame {
         registerButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
         registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerButtonActionPerformed(evt);
+                registerButtonActionPerformed2(evt);
             }
         });
 
@@ -184,27 +184,18 @@ public class Register extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-            if(!nameTextField.getText().equals("") && !surnameTextField.getText().equals("")&& !studentNoTextField.getText().equals("") && !passwordField.getText().equals("")){
-                DB_query db_query = new DB_query();
-               Student student = new Student(studentNoTextField.getText(), nameTextField.getText(), surnameTextField.getText(), passwordField.getText(),0);
-               db_query.register(student);
-            }
-            else{
-                JOptionPane.showMessageDialog(null, "butun alanlar doldurmak zorunludur");
-            }
-    }//GEN-LAST:event_registerButtonActionPerformed
+    private void registerButtonActionPerformed2(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed2
+        if (!nameTextField.getText().equals("") && !surnameTextField.getText().equals("") && !studentNoTextField.getText().equals("") && !passwordField.getText().equals("")) {
+            DB_query db_query = new DB_query();
+            Student student = new Student(studentNoTextField.getText(), nameTextField.getText(), surnameTextField.getText(), passwordField.getText(), 0);
+            db_query.register(student);
+        } else {
+            JOptionPane.showMessageDialog(null, "butun alanlar doldurmak zorunludur");
+        }    }//GEN-LAST:event_registerButtonActionPerformed2
 
-    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        if(!nameTextField.getText().equals("") && !surnameTextField.getText().equals("")&& !studentNoTextField.getText().equals("") && !passwordField.getText().equals("")){
-                DB_query db_query = new DB_query();
-               Student student = new Student(studentNoTextField.getText(), nameTextField.getText(), surnameTextField.getText(), passwordField.getText(),0);
-               db_query.register(student);
-            }
-            else{
-                System.out.println(" not null");
-            }
-    }//GEN-LAST:event_registerButtonActionPerformed
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {                                               
+
+    }                                              
 
     /**
      * @param args the command line arguments
