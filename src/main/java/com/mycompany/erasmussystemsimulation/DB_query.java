@@ -59,7 +59,7 @@ public class DB_query {
 
         return Student;
     }
-    public static void  register(Student student){
+    public static void register(Student student){
         int status=0;
         try{
             stmt=con.createStatement();

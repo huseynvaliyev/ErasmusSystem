@@ -195,6 +195,17 @@ public class Register extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_registerButtonActionPerformed
 
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        if(!nameTextField.getText().equals("") && !surnameTextField.getText().equals("")&& !studentNoTextField.getText().equals("") && !passwordField.getText().equals("")){
+                DB_query db_query = new DB_query();
+               Student student = new Student(studentNoTextField.getText(), nameTextField.getText(), surnameTextField.getText(), passwordField.getText(),0);
+               db_query.register(student);
+            }
+            else{
+                System.out.println(" not null");
+            }
+    }//GEN-LAST:event_registerButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
