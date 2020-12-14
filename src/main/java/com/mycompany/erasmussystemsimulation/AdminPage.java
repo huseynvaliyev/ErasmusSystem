@@ -497,6 +497,7 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_countryNameTextFieldActionPerformed
 
     private void countryaddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryaddButtonActionPerformed
+        System.out.println("sdfds");
         // TODO add your handling code here:
     }//GEN-LAST:event_countryaddButtonActionPerformed
 
