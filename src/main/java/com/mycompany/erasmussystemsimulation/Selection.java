@@ -11,14 +11,24 @@ package com.mycompany.erasmussystemsimulation;
  */
 public class Selection {
     
+    private Country country;
     private University university;
     private Department department;
     private boolean success;
 
-    public Selection(University university, Department department) {
+    public Selection(Country country, University university, Department department) {
+        this.country = country;
         this.university = university;
         this.department = department;
         this.success = false;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public University getUniversity() {

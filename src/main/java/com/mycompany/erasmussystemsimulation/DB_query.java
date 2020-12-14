@@ -32,20 +32,7 @@ public class DB_query {
     private static final String password="Eldeyme01";
     
 
-    public static boolean Register(String name, String surname,String password ,int student_id){
-        boolean status=false;
-        try {
-            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("Select * from ogrenciler where ogrenci_numarasi="+student_id);
-            if(rs.next())
-                System.out.print("kullanici var");
-        } catch (SQLException ex) {
-            Logger.getLogger(DB_query.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-        return status;
-    }
+
     public  static void qosul() throws SQLException{
         try {
             con = DriverManager.getConnection(url,user,password);
@@ -179,10 +166,13 @@ public class DB_query {
         return department;
     }
     public static void addCountry(Country country){
+        System.out.println(country.getName().get(0));
         int  status =0;
         try{
             stmt=con.createStatement();
-            status =stmt.executeUpdate("INSERT INTO public.olke(ad)VALUES ("+country.getName().get(0)+")");
+            System.out.println("1");
+            status =stmt.executeUpdate("INSERT INTO public.olke (ad) VALUES ('"+country.getName().get(0)+"')");
+            System.out.println("2");
             if(status!=0){
                 JOptionPane.showMessageDialog(null,"Country added");
             }
@@ -191,7 +181,7 @@ public class DB_query {
             }
                 
         }catch(SQLException e){
-            System.out.println(e);
+            JOptionPane.showMessageDialog(null, e);
         }
     
     }
