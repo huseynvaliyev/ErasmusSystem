@@ -64,6 +64,8 @@ public class AdminPage extends javax.swing.JFrame {
         departCountryComboBox = new javax.swing.JComboBox<>();
         universityComboBox = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        quotaTextField = new javax.swing.JTextField();
         pnlCardExam = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -331,6 +333,10 @@ public class AdminPage extends javax.swing.JFrame {
 
         universityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("Quota:");
+
         javax.swing.GroupLayout pnlCardDepartmentLayout = new javax.swing.GroupLayout(pnlCardDepartment);
         pnlCardDepartment.setLayout(pnlCardDepartmentLayout);
         pnlCardDepartmentLayout.setHorizontalGroup(
@@ -350,9 +356,13 @@ public class AdminPage extends javax.swing.JFrame {
                                 .addComponent(departCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCardDepartmentLayout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlCardDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnlCardDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                            .addComponent(quotaTextField))))
                 .addContainerGap(104, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCardDepartmentLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -381,9 +391,13 @@ public class AdminPage extends javax.swing.JFrame {
                 .addGroup(pnlCardDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
+                .addGap(18, 18, 18)
+                .addGroup(pnlCardDepartmentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(quotaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(departmentAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCardDepartment, "pnlCardDepartment");
@@ -564,6 +578,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -581,6 +596,7 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JPanel pnlCardExam;
     private javax.swing.JPanel pnlCardUniversity;
     private javax.swing.JPanel pnlCards;
+    private javax.swing.JTextField quotaTextField;
     private javax.swing.JButton scoreAddButton;
     private javax.swing.JTextField scoreTextField;
     private javax.swing.JComboBox<String> studentComboBox;
