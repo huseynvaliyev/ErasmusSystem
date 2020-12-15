@@ -19,11 +19,19 @@ public class StudentPage extends javax.swing.JFrame {
      */
     
     CardLayout cardLayout;
+
     static Student student=null;
+
     public StudentPage(Student student) {
         initComponents();
         this.student=student;
         cardLayout = (CardLayout)(pnlCards.getLayout());
+        studentNumber.setText(student.getStudentNumber());
+        name.setText(student.getName());
+        surname.setText(student.getSurname());
+        examScore.setText(String.valueOf(student.getExamScore()));
+        
+
         
     }
 
