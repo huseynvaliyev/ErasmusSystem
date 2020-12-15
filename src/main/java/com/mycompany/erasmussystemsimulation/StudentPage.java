@@ -19,10 +19,18 @@ public class StudentPage extends javax.swing.JFrame {
      */
     
     CardLayout cardLayout;
+   static Student student=null;
     
-    public StudentPage() {
+    public StudentPage(Student student) {
         initComponents();
+        this.student=student;
         cardLayout = (CardLayout)(pnlCards.getLayout());
+        studentNumber.setText(student.getStudentNumber());
+        name.setText(student.getName());
+        surname.setText(student.getSurname());
+        examScore.setText(String.valueOf(student.getExamScore()));
+        
+        
     }
 
     /**
@@ -453,7 +461,7 @@ public class StudentPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentPage().setVisible(true);
+                new StudentPage(student).setVisible(true);
             }
         });
     }

@@ -6,13 +6,14 @@
 package com.mycompany.erasmussystemsimulation;
 
 import java.awt.CardLayout;
+import java.util.ArrayList;
 
 /**
  *
  * @author huseynvaliyev
  */
 public class AdminPage extends javax.swing.JFrame {
-
+    DB_query db_query= new DB_query();
     /**
      * Creates new form MainPage
      */
@@ -492,6 +493,7 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void addCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCountryButtonActionPerformed
         cardLayout.show(pnlCards,"pnlCardCountry");
+
     }//GEN-LAST:event_addCountryButtonActionPerformed
 
     private void addUniversityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUniversityButtonActionPerformed
@@ -511,6 +513,12 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_countryNameTextFieldActionPerformed
 
     private void countryaddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryaddButtonActionPerformed
+        cardLayout.show(pnlCards,"pnlCardCountry");
+        ArrayList<String>  name = null;
+        name= new ArrayList();
+        name.add(countryNameTextField.getText());
+        Country country = new Country(name,null);
+        db_query.addCountry(country);
         // TODO add your handling code here:
     }//GEN-LAST:event_countryaddButtonActionPerformed
 

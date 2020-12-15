@@ -27,9 +27,9 @@ public class DB_query {
     private static Connection con;
     private static Statement  stmt;
     private static ResultSet  rs;   
-    private static final String url="jdbc:postgresql://localhost:5432/Erasmus_DB";
+    private static final String url="jdbc:postgresql://localhost:5432/postgres";
     private static final String user="postgres";
-    private static final String password="Eldeyme01";
+    private static final String password="1110";
     
 
 
