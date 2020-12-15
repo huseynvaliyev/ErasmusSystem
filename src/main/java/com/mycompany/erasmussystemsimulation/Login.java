@@ -247,7 +247,7 @@ public class Login extends javax.swing.JFrame {
         jButton1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 Student=db_query.login(paname.getText());
-
+                
                 if(Student!=null){
                     if(Student.getName().equals("Admin") && Student.getPassword().equals(ppaswd.getText())){
                         System.out.println("Admin");
@@ -257,7 +257,7 @@ public class Login extends javax.swing.JFrame {
                     }
                     else if(Student.getPassword().equals(ppaswd.getText())){
                        // db_query.getConsultant(Student);
-                        StudentPage student=new StudentPage();
+                        StudentPage student=new StudentPage(Student);
                         setVisible(false);
                         student.setVisible(true);
                     }
@@ -270,6 +270,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
      }
+     
+
  public void actionregister(){
         jButton2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
