@@ -19,8 +19,9 @@ public class StudentPage extends javax.swing.JFrame {
      */
     
     CardLayout cardLayout;
-   static Student student=null;
-    
+
+    static Student student=null;
+
     public StudentPage(Student student) {
         initComponents();
         this.student=student;
@@ -30,6 +31,7 @@ public class StudentPage extends javax.swing.JFrame {
         surname.setText(student.getSurname());
         examScore.setText(String.valueOf(student.getExamScore()));
         
+
         
     }
 
@@ -493,7 +495,7 @@ public class StudentPage extends javax.swing.JFrame {
     private javax.swing.JButton selectUniversityButton;
     private javax.swing.JTable selectionTable;
     private javax.swing.JButton showResultButton;
-    private javax.swing.JLabel studentNumber;
+    public javax.swing.JLabel studentNumber;
     private javax.swing.JLabel surname;
     private javax.swing.JComboBox<String> univeristyComboBox;
     private javax.swing.JLabel universityName;

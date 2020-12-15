@@ -1,4 +1,5 @@
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,9 +28,9 @@ public class DB_query {
     private static Connection con;
     private static Statement  stmt;
     private static ResultSet  rs;   
-    private static final String url="jdbc:postgresql://localhost:5432/postgres";
+    private static final String url="jdbc:postgresql://localhost:5432/Erasmus_DB";
     private static final String user="postgres";
-    private static final String password="1110";
+    private static final String password="Eldeyme01";
     
 
 
@@ -58,6 +59,20 @@ public class DB_query {
         }
 
         return Student;
+    }
+    public static ArrayList<String> getogrenciler(){
+        ArrayList<String> names=null;
+        try{
+            stmt=con.createStatement();
+            rs=stmt.executeQuery("select ogrenci_numarasi from ogrenciler ");
+            while(rs.next()){
+                names.add(rs.getString("ogrenci_numarasi"));
+            }
+            names.remove("Admin");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return names;
     }
     public static void register(Student student){
         int status=0;
@@ -184,6 +199,67 @@ public class DB_query {
             JOptionPane.showMessageDialog(null, e);
         }
     
+    }
+    public static void addUniversity(University university){
+        int status=0;
+        try{
+            stmt=con.createStatement();
+            status=stmt.executeUpdate("Insert into public.uni(ad,olke_id) Values ('"+university.getName().get(0)+"',"+university.getCountry().getId().get(0)+")");
+            if(status !=0){
+                JOptionPane.showMessageDialog(null, "University added");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "University exsist");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+      
+    }
+    public static void addDepartment(Department department){
+        int status=0;
+        try{
+            stmt=con.createStatement();
+            status=stmt.executeUpdate("INSERT INTO public.bolumler(bolum_adi, uni_id, kontenjan, dolu_kontenjan)VALUES ('"+department.getName().get(0)+","+department.getUniversity().getId().get(0)+","+department.getQuota().get(0)+"0");
+            if(status !=0){
+                JOptionPane.showMessageDialog(null, "University added");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "University exsist");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    public static void setPuan(String studentno,int puan){
+        int status=0;
+        try{
+            stmt=con.createStatement();
+            status=stmt.executeUpdate("UPDATE public.ogrenciler SET puan="+puan+" WHERE ogrenci_numarasi='"+studentno+"'");
+            if(status!=0){
+                JOptionPane.showMessageDialog(null, studentno+" numarali ogrenciye puan eklendi");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "puan eklenemedi");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+     }
+    public static void setSecim(Student student, Department department,int index){
+        int status=0;
+        try{
+            stmt=con.createStatement();
+            status=stmt.executeUpdate("INSERT INTO public.secim(ogrenci_id, bolum_id, status) VALUES ('"+student.getStudentNumber()+","+department.getId().get(index)+",0");
+            if(status!=0){
+                JOptionPane.showMessageDialog(null, "Seciminiz eklendi");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "secmiminiz eklenemedi");
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
    
 }

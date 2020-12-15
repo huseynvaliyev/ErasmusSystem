@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -247,7 +248,7 @@ public class Login extends javax.swing.JFrame {
         jButton1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 Student=db_query.login(paname.getText());
-                
+
                 if(Student!=null){
                     if(Student.getName().equals("Admin") && Student.getPassword().equals(ppaswd.getText())){
                         System.out.println("Admin");
@@ -270,8 +271,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
      }
-     
-
  public void actionregister(){
         jButton2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent ae){
