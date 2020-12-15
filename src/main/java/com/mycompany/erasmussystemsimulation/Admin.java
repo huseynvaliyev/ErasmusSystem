@@ -10,7 +10,6 @@ package com.mycompany.erasmussystemsimulation;
  * @author huseynvaliyev
  */
 public class Admin {
-    
     // Admin's function
     
 }

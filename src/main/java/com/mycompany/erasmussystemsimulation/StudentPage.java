@@ -19,10 +19,12 @@ public class StudentPage extends javax.swing.JFrame {
      */
     
     CardLayout cardLayout;
-    
-    public StudentPage() {
+    static Student student=null;
+    public StudentPage(Student student) {
         initComponents();
+        this.student=student;
         cardLayout = (CardLayout)(pnlCards.getLayout());
+        
     }
 
     /**
@@ -453,7 +455,7 @@ public class StudentPage extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentPage().setVisible(true);
+                new StudentPage(student).setVisible(true);
             }
         });
     }
@@ -485,7 +487,7 @@ public class StudentPage extends javax.swing.JFrame {
     private javax.swing.JButton selectUniversityButton;
     private javax.swing.JTable selectionTable;
     private javax.swing.JButton showResultButton;
-    private javax.swing.JLabel studentNumber;
+    public javax.swing.JLabel studentNumber;
     private javax.swing.JLabel surname;
     private javax.swing.JComboBox<String> univeristyComboBox;
     private javax.swing.JLabel universityName;

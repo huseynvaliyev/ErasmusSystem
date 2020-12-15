@@ -257,7 +257,7 @@ public class Login extends javax.swing.JFrame {
                     }
                     else if(Student.getPassword().equals(ppaswd.getText())){
                        // db_query.getConsultant(Student);
-                        StudentPage student=new StudentPage();
+                        StudentPage student=new StudentPage(Student);
                         setVisible(false);
                         student.setVisible(true);
                     }
