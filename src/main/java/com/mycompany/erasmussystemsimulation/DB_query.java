@@ -278,7 +278,5 @@ public class DB_query {
        }catch(SQLException e){
            JOptionPane.showMessageDialog(null, e);
        }
-   
-   
    }
 }

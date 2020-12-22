@@ -536,6 +536,7 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_countryaddButtonActionPerformed
 
     private void universityAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_universityAddButtonActionPerformed
+
     ArrayList<String>  Uname = null;
     ArrayList<String>  Cname = null;
     ArrayList<Integer>  id = null;
@@ -554,6 +555,7 @@ public class AdminPage extends javax.swing.JFrame {
     db_query.addUniversity(university);
     
     
+
 
     }//GEN-LAST:event_universityAddButtonActionPerformed
 
