@@ -523,7 +523,6 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_countryaddButtonActionPerformed
 
     private void universityAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_universityAddButtonActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_universityAddButtonActionPerformed
 
     private void departmentAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentAddButtonActionPerformed
