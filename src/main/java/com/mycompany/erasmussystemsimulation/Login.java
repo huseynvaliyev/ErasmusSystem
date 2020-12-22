@@ -30,7 +30,7 @@ public class Login extends javax.swing.JFrame {
             ArrayList<String> tmp= new ArrayList();
             tmp.add("Danimarka");
             ArrayList <Integer> tmp_id =new ArrayList<>();
-            Country country = new Country(tmp, tmp_id);
+            Country country = new Country(tmp,tmp_id);
             //db_query.addCountry(country);
            /* db_query.getcountry();
             ArrayList <String>tmp=new ArrayList<>();
