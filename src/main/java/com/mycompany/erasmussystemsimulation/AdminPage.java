@@ -7,6 +7,9 @@ package com.mycompany.erasmussystemsimulation;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -14,12 +17,14 @@ import java.util.ArrayList;
  */
 public class AdminPage extends javax.swing.JFrame {
     DB_query db_query= new DB_query();
-    /**
+    /**    
+
      * Creates new form MainPage
      */
     
     CardLayout cardLayout;
-    
+    Country country=null;
+
     public AdminPage() {
         initComponents();
         
@@ -240,6 +245,11 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel4.setText("Country:");
 
         CountryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        CountryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CountryComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -493,11 +503,14 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void addCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCountryButtonActionPerformed
         cardLayout.show(pnlCards,"pnlCardCountry");
-
     }//GEN-LAST:event_addCountryButtonActionPerformed
 
     private void addUniversityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUniversityButtonActionPerformed
+        
         cardLayout.show(pnlCards,"pnlCardUniversity");
+        country=db_query.getcountry();
+        DefaultComboBoxModel dm=new DefaultComboBoxModel(country.getName().toArray());
+        CountryComboBox.setModel(dm);
     }//GEN-LAST:event_addUniversityButtonActionPerformed
 
     private void addDepartmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDepartmentButtonActionPerformed
@@ -511,7 +524,6 @@ public class AdminPage extends javax.swing.JFrame {
     private void countryNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryNameTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_countryNameTextFieldActionPerformed
-
     private void countryaddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryaddButtonActionPerformed
         cardLayout.show(pnlCards,"pnlCardCountry");
         ArrayList<String>  name = null;
@@ -523,7 +535,25 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_countryaddButtonActionPerformed
 
     private void universityAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_universityAddButtonActionPerformed
-        // TODO add your handling code here:
+    ArrayList<String>  Uname = null;
+    ArrayList<String>  Cname = null;
+    ArrayList<Integer>  id = null;
+    Uname=new ArrayList();
+    Cname=new ArrayList();
+    id = new ArrayList();
+
+    id.add( country.getId().indexOf(CountryComboBox.getSelectedIndex()));
+    System.out.println(country.getId());
+
+    System.out.println("id:"+country.getId().indexOf(CountryComboBox.getSelectedIndex()));
+    Cname.add(CountryComboBox.getSelectedItem().toString());
+    Country country =new Country(Cname,id);
+    Uname.add(uniNameTextField.getText());
+    University university = new University(Uname,country,id);
+    db_query.addUniversity(university);
+    
+    
+
     }//GEN-LAST:event_universityAddButtonActionPerformed
 
     private void departmentAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentAddButtonActionPerformed
@@ -533,6 +563,10 @@ public class AdminPage extends javax.swing.JFrame {
     private void scoreAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoreAddButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_scoreAddButtonActionPerformed
+
+    private void CountryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountryComboBoxActionPerformed
+
+    }//GEN-LAST:event_CountryComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
