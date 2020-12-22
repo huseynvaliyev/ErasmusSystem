@@ -503,6 +503,7 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void addCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCountryButtonActionPerformed
         cardLayout.show(pnlCards,"pnlCardCountry");
+        
     }//GEN-LAST:event_addCountryButtonActionPerformed
 
     private void addUniversityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUniversityButtonActionPerformed

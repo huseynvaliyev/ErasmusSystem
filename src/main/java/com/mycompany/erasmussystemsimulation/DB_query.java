@@ -264,5 +264,21 @@ public class DB_query {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+   public static void deleteSecim(Student student, Department department,int index){
+       int status=0;
+       try{
+           stmt=con.createStatement();
+           status=stmt.executeUpdate("DELETE FROM public.secim WHERE bolum_id="+department.getId().get(index));
+           if(status!=0){
+               JOptionPane.showMessageDialog(null, "secdiyiniz ders silindi");
+           }
+           else {
+               JOptionPane.showConfirmDialog(null, "Ders silenemedi");
+           }
+       }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+       }
    
+   
+   }
 }
