@@ -7,6 +7,7 @@ package com.mycompany.erasmussystemsimulation;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -17,19 +18,25 @@ public class StudentPage extends javax.swing.JFrame {
     /**
      * Creates new form MainPage
      */
-    
+    DB_query db_query =new DB_query();
     CardLayout cardLayout;
-
+    Country country=null;
+    University university=null;
+    Department department =null;
     static Student student=null;
 
     public StudentPage(Student student) {
         initComponents();
         this.student=student;
+        
         cardLayout = (CardLayout)(pnlCards.getLayout());
         studentNumber.setText(student.getStudentNumber());
         name.setText(student.getName());
         surname.setText(student.getSurname());
         examScore.setText(String.valueOf(student.getExamScore()));
+        country=db_query.getcountry();
+        DefaultComboBoxModel dm=new DefaultComboBoxModel(country.getName().toArray());
+        countryComboBox.setModel(dm);
         
 
         
@@ -172,8 +179,18 @@ public class StudentPage extends javax.swing.JFrame {
         jLabel5.setText("Department:");
 
         countryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        countryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryComboBoxActionPerformed(evt);
+            }
+        });
 
         univeristyComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        univeristyComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                univeristyComboBoxActionPerformed(evt);
+            }
+        });
 
         departmentComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -213,7 +230,7 @@ public class StudentPage extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(departmentComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
@@ -233,6 +250,11 @@ public class StudentPage extends javax.swing.JFrame {
         deleteUniversityButton.setForeground(new java.awt.Color(255, 255, 255));
         deleteUniversityButton.setText("DELETE");
         deleteUniversityButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        deleteUniversityButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUniversityButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -419,12 +441,49 @@ public class StudentPage extends javax.swing.JFrame {
     }//GEN-LAST:event_showResultButtonActionPerformed
 
     private void addUniversityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUniversityButtonActionPerformed
-
+        db_query.setSecim(student, department, departmentComboBox.getSelectedIndex());
     }//GEN-LAST:event_addUniversityButtonActionPerformed
 
     private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_approveButtonActionPerformed
+
+    private void countryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryComboBoxActionPerformed
+        ArrayList<Integer> id =new ArrayList<>();
+        id.add(country.getId().get(countryComboBox.getSelectedIndex()));
+        Country tmp_country =new Country(null, id);
+        university=db_query.getuniversity(tmp_country);
+        if(university!=null){
+            DefaultComboBoxModel dm =new DefaultComboBoxModel(university.getName().toArray());
+            univeristyComboBox.setModel(dm);
+        }
+        else{
+            DefaultComboBoxModel dm =new DefaultComboBoxModel<>();
+            univeristyComboBox.setModel(dm);
+        
+        }
+        
+    }//GEN-LAST:event_countryComboBoxActionPerformed
+
+    private void univeristyComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_univeristyComboBoxActionPerformed
+        ArrayList<Integer> id =new ArrayList<>();
+        id.add(university.getId().get(univeristyComboBox.getSelectedIndex()));
+        University tmp_university = new University(null, null, id);
+        System.out.println(tmp_university.getId().get(0));
+        department=db_query.getdepartment(tmp_university);
+        if(department!=null){
+            DefaultComboBoxModel dm =new DefaultComboBoxModel(department.getName().toArray());
+            departmentComboBox.setModel(dm);            
+        }
+        else{
+            DefaultComboBoxModel dm =new DefaultComboBoxModel<>();
+            departmentComboBox.setModel(dm);
+        }
+    }//GEN-LAST:event_univeristyComboBoxActionPerformed
+
+    private void deleteUniversityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUniversityButtonActionPerformed
+        db_query.deleteSecim(student, department, departmentComboBox.getSelectedIndex());
+    }//GEN-LAST:event_deleteUniversityButtonActionPerformed
 
     /**
      * @param args the command line arguments

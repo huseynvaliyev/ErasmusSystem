@@ -28,9 +28,9 @@ public class DB_query {
     private static Connection con;
     private static Statement  stmt;
     private static ResultSet  rs;   
-    private static final String url="jdbc:postgresql://localhost:5432/postgres";
+    private static final String url="jdbc:postgresql://localhost:5432/Erasmus_DB";
     private static final String user="postgres";
-    private static final String password="1110";
+    private static final String password="Eldeyme01";
     
 
 
@@ -60,8 +60,8 @@ public class DB_query {
 
         return Student;
     }
-    public static ArrayList<String> getogrenciler(){
-        ArrayList<String> names=null;
+    public static ArrayList<String> getOgrenciler(){
+        ArrayList<String> names=new ArrayList<>();
         try{
             stmt=con.createStatement();
             rs=stmt.executeQuery("select ogrenci_numarasi from ogrenciler ");
@@ -135,7 +135,7 @@ public class DB_query {
            stmt=con.createStatement();
            rs=stmt.executeQuery("Select * from uni where olke_id="+country.getId().get(0));
            while(rs.next()){
-               uni_name.add(rs.getString("uni_adi"));
+               uni_name.add(rs.getString("ad"));
                id_array.add(rs.getInt("Id"));
            }
            if(uni_name.size()!=0){
@@ -147,19 +147,10 @@ public class DB_query {
        }
        return University;
     }
-    public static Department getdepartment(University university,int type){
+    public static Department getdepartment(University university){
         Department department = null;
         try{
             stmt=con.createStatement();
-            if(type==0){
-                rs=stmt.executeQuery("Select bolum_adi from bolumler group by bolum_adi");
-                ArrayList <String> tmp= new ArrayList<>();
-                while(rs.next()){
-                    tmp.add(rs.getString("bolum_adi"));
-                }
-                department= new Department(tmp, null, null, null, null);
-            }
-            else{
                 rs=stmt.executeQuery("Select * from bolumler where uni_id="+university.getId().get(0));
                 ArrayList<String> name=new ArrayList<>();
                 ArrayList<Integer> quota = new ArrayList<>();
@@ -169,12 +160,13 @@ public class DB_query {
                 while(rs.next()){
                     name.add(rs.getString("bolum_adi"));
                     quota.add(rs.getInt("kontenjan"));
-                    emptyQuota.add(rs.getInt("kontenjan_dolu"));
+                    emptyQuota.add(rs.getInt("dolu_kontenjan"));
                     id.add(rs.getInt("Id"));
                 }
-                department = new Department(name, university, quota, emptyQuota, id);
+                if(name.size()!=0)
+                    department = new Department(name, university, quota, emptyQuota, id);
 
-            }
+            
         }catch(SQLException e){
             System.out.println(e);
         }
@@ -202,8 +194,6 @@ public class DB_query {
     }
     public static void addUniversity(University university){
         int status=0;
-                    System.out.println("status :"+university.getName().get(0) +" " +  university.getCountry().getId().get(0));
-
         try{
             stmt=con.createStatement();
             status=stmt.executeUpdate("Insert into public.uni(ad,olke_id) Values ('"+university.getName().get(0)+"',"+university.getCountry().getId().get(0)+")");
@@ -223,12 +213,12 @@ public class DB_query {
         int status=0;
         try{
             stmt=con.createStatement();
-            status=stmt.executeUpdate("INSERT INTO public.bolumler(bolum_adi, uni_id, kontenjan, dolu_kontenjan)VALUES ('"+department.getName().get(0)+","+department.getUniversity().getId().get(0)+","+department.getQuota().get(0)+"0");
+            status=stmt.executeUpdate("INSERT INTO public.bolumler(bolum_adi, uni_id, kontenjan, dolu_kontenjan)VALUES ('"+department.getName().get(0)+"',"+department.getUniversity().getId().get(0)+","+department.getQuota().get(0)+",0)");
             if(status !=0){
-                JOptionPane.showMessageDialog(null, "University added");
+                JOptionPane.showMessageDialog(null, "Department added");
             }
             else{
-                JOptionPane.showMessageDialog(null, "University exsist");
+                JOptionPane.showMessageDialog(null, "Department exsist");
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
@@ -253,7 +243,7 @@ public class DB_query {
         int status=0;
         try{
             stmt=con.createStatement();
-            status=stmt.executeUpdate("INSERT INTO public.secim(ogrenci_id, bolum_id, status) VALUES ('"+student.getStudentNumber()+","+department.getId().get(index)+",0");
+            status=stmt.executeUpdate("INSERT INTO public.secim(ogrenci_numarasi, bolum_id, status) VALUES ('"+student.getStudentNumber()+"',"+department.getId().get(index)+",0)");
             if(status!=0){
                 JOptionPane.showMessageDialog(null, "Seciminiz eklendi");
             }
@@ -273,7 +263,7 @@ public class DB_query {
                JOptionPane.showMessageDialog(null, "secdiyiniz ders silindi");
            }
            else {
-               JOptionPane.showConfirmDialog(null, "Ders silenemedi");
+               JOptionPane.showMessageDialog(null, "Ders silenemedi");
            }
        }catch(SQLException e){
            JOptionPane.showMessageDialog(null, e);

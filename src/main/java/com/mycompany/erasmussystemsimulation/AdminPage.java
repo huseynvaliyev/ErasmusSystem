@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,6 +25,7 @@ public class AdminPage extends javax.swing.JFrame {
     
     CardLayout cardLayout;
     Country country=null;
+    University university= null;
 
     public AdminPage() {
         initComponents();
@@ -306,7 +308,7 @@ public class AdminPage extends javax.swing.JFrame {
                     .addComponent(uniNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(universityAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCardUniversity, "pnlCardUniversity");
@@ -341,6 +343,11 @@ public class AdminPage extends javax.swing.JFrame {
         });
 
         departCountryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        departCountryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                departCountryComboBoxActionPerformed(evt);
+            }
+        });
 
         universityComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -408,7 +415,7 @@ public class AdminPage extends javax.swing.JFrame {
                     .addComponent(quotaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(departmentAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCardDepartment, "pnlCardDepartment");
@@ -480,7 +487,7 @@ public class AdminPage extends javax.swing.JFrame {
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(73, 73, 73)
                 .addComponent(scoreAddButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCardExam, "pnlCardExam");
@@ -507,7 +514,6 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_addCountryButtonActionPerformed
 
     private void addUniversityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUniversityButtonActionPerformed
-        
         cardLayout.show(pnlCards,"pnlCardUniversity");
         country=db_query.getcountry();
         DefaultComboBoxModel dm=new DefaultComboBoxModel(country.getName().toArray());
@@ -516,10 +522,19 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void addDepartmentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDepartmentButtonActionPerformed
         cardLayout.show(pnlCards,"pnlCardDepartment");
+        country=db_query.getcountry();
+        DefaultComboBoxModel dm=new DefaultComboBoxModel(country.getName().toArray());
+        departCountryComboBox.setModel(dm);
+        
     }//GEN-LAST:event_addDepartmentButtonActionPerformed
 
     private void enterExamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterExamButtonActionPerformed
         cardLayout.show(pnlCards,"pnlCardExam");
+        ArrayList<String> names=new ArrayList<>();
+        names=db_query.getOgrenciler();
+        DefaultComboBoxModel dm=new DefaultComboBoxModel(names.toArray());
+        studentComboBox.setModel(dm);
+        
     }//GEN-LAST:event_enterExamButtonActionPerformed
 
     private void countryNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryNameTextFieldActionPerformed
@@ -543,15 +558,12 @@ public class AdminPage extends javax.swing.JFrame {
     Uname=new ArrayList();
     Cname=new ArrayList();
     id = new ArrayList();
-
-    id.add( country.getId().indexOf(CountryComboBox.getSelectedIndex()));
-    System.out.println(country.getId());
-
-    System.out.println("id:"+country.getId().indexOf(CountryComboBox.getSelectedIndex()));
+    System.out.println(CountryComboBox.getSelectedIndex()+" "+country.getId()+" "+ country.getId().get(CountryComboBox.getSelectedIndex()));
+    id.add( country.getId().get(CountryComboBox.getSelectedIndex()));
     Cname.add(CountryComboBox.getSelectedItem().toString());
     Country country =new Country(Cname,id);
     Uname.add(uniNameTextField.getText());
-    University university = new University(Uname,country,id);
+    University university = new University(Uname,country,null);
     db_query.addUniversity(university);
     
     
@@ -560,16 +572,46 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_universityAddButtonActionPerformed
 
     private void departmentAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departmentAddButtonActionPerformed
-        // TODO add your handling code here:
+        if(jTextField1.getText()!=" " && quotaTextField.getText() !=" "){           
+            ArrayList<Integer> id = new ArrayList();
+            ArrayList<String> name = new ArrayList<>();
+            ArrayList<Integer> quota = new ArrayList<>();
+            name.add(jTextField1.getText());
+            id.add(university.getId().get(universityComboBox.getSelectedIndex()));
+            quota.add(Integer.parseInt(quotaTextField.getText()));
+            System.out.println(" " +university.getId().get(universityComboBox.getSelectedIndex())+" "+universityComboBox.getSelectedIndex());
+            University tmp_university = new University(null, null, id);
+            Department department= new Department(name,tmp_university, quota, null, null);
+            db_query.addDepartment(department);
+        }
+        else
+            JOptionPane.showMessageDialog(null, "butun alanlari doldurmaniz gerek");
     }//GEN-LAST:event_departmentAddButtonActionPerformed
 
     private void scoreAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_scoreAddButtonActionPerformed
-        // TODO add your handling code here:
+        if(scoreTextField.getText()!=null)
+            db_query.setPuan(studentComboBox.getSelectedItem().toString(),Integer.parseInt(scoreTextField.getText().toString()));
     }//GEN-LAST:event_scoreAddButtonActionPerformed
 
     private void CountryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CountryComboBoxActionPerformed
 
     }//GEN-LAST:event_CountryComboBoxActionPerformed
+
+    private void departCountryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departCountryComboBoxActionPerformed
+        ArrayList<Integer> id =new ArrayList<>();
+        id.add(country.getId().get(departCountryComboBox.getSelectedIndex()));
+        Country tmp_country=new Country(null,id);
+        System.out.print(id);
+        university=db_query.getuniversity(tmp_country);
+        if(university==null){
+            DefaultComboBoxModel dm=new DefaultComboBoxModel<>();
+            universityComboBox.setModel(dm);
+        }
+        else{
+            DefaultComboBoxModel dm=new DefaultComboBoxModel(university.getName().toArray());
+            universityComboBox.setModel(dm);
+        }
+    }//GEN-LAST:event_departCountryComboBoxActionPerformed
 
     /**
      * @param args the command line arguments
