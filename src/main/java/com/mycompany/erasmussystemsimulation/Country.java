@@ -16,9 +16,12 @@ public class Country {
     private ArrayList<String>  name;
     private ArrayList<Integer>  id;
 
-    public Country(ArrayList<String> name, ArrayList<Integer> id) {
+    public Country(ArrayList<String> name, ArrayList<Integer>  id) {
         this.name = name;
-        this.id = id;
+        this.id=id;
+    }
+
+    Country() {
     }
 
     public ArrayList<String> getName() {

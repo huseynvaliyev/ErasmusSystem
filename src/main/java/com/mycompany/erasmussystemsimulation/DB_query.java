@@ -28,9 +28,9 @@ public class DB_query {
     private static Connection con;
     private static Statement  stmt;
     private static ResultSet  rs;   
-    private static final String url="jdbc:postgresql://localhost:5432/Erasmus_DB";
+    private static final String url="jdbc:postgresql://localhost:5432/postgres";
     private static final String user="postgres";
-    private static final String password="Eldeyme01";
+    private static final String password="1110";
     
 
 
@@ -116,7 +116,7 @@ public class DB_query {
                 id.add(rs.getInt("Id"));
                 
             }
-            country=new Country(name, id);
+            country=new Country(name,id);
             System.out.println(id.size()+" "+name.size());
             System.out.println(id.get(2)+" "+name.get(2));
  
@@ -202,9 +202,12 @@ public class DB_query {
     }
     public static void addUniversity(University university){
         int status=0;
+                    System.out.println("status :"+university.getName().get(0) +" " +  university.getCountry().getId().get(0));
+
         try{
             stmt=con.createStatement();
             status=stmt.executeUpdate("Insert into public.uni(ad,olke_id) Values ('"+university.getName().get(0)+"',"+university.getCountry().getId().get(0)+")");
+
             if(status !=0){
                 JOptionPane.showMessageDialog(null, "University added");
             }
