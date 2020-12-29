@@ -5,56 +5,42 @@
  */
 package com.mycompany.erasmussystemsimulation;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author huseynvaliyev
  */
 public class Selection {
     
-    private Country country;
-    private University university;
-    private Department department;
+    private ArrayList<String> country;
+    private ArrayList<String> university;
+    private ArrayList<String> department;
     private boolean success;
 
-    public Selection(Country country, University university, Department department) {
+    public Selection(ArrayList<String> country, ArrayList<String> university, ArrayList<String> department, boolean success) {
         this.country = country;
         this.university = university;
         this.department = department;
-        this.success = false;
+        this.success = success;
     }
 
-    public Country getCountry() {
+    public ArrayList<String> getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public University getUniversity() {
+    public ArrayList<String> getUniversity() {
         return university;
     }
 
-    public void setUniversity(University university) {
-        this.university = university;
-    }
-
-    public Department getDepartment() {
+    public ArrayList<String> getDepartment() {
         return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
     }
 
     public boolean isSuccess() {
         return success;
     }
 
-    public void setSuccess(boolean success) {
-        this.success = success;
-    }
-    
-    
+  
     
 }

@@ -135,7 +135,7 @@ public class DB_query {
            stmt=con.createStatement();
            rs=stmt.executeQuery("Select * from uni where olke_id="+country.getId().get(0));
            while(rs.next()){
-               uni_name.add(rs.getString("ad"));
+               uni_name.add(rs.getString("uni_ad"));
                id_array.add(rs.getInt("Id"));
            }
            if(uni_name.size()!=0){
@@ -269,4 +269,27 @@ public class DB_query {
            JOptionPane.showMessageDialog(null, e);
        }
    }
+   public static Selection getSecimler(Student student){
+       Selection selection = null;
+       ArrayList<String> country =new ArrayList<>();
+       ArrayList<String> university=new ArrayList<>();
+       ArrayList<String> department =new ArrayList<>();
+       try{
+           stmt=con.createStatement();
+           rs=stmt.executeQuery("Select * from ogrenci_secimleri where ogrenci_numarasi='" +student.getStudentNumber()+"'");
+           while(rs.next()){
+               country.add(rs.getString("ad"));
+               university.add(rs.getString("uni_ad"));
+               department.add(rs.getString("bolum_adi"));
+           }
+           if(country.size()>0){
+               selection=new Selection(country, university, department, true);
+            }
+           
+       }catch(SQLException e){
+           System.err.println(e);
+       }
+   return selection;    
+   }
+   
 }
