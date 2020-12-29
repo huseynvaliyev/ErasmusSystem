@@ -8,6 +8,7 @@ package com.mycompany.erasmussystemsimulation;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,6 +25,7 @@ public class StudentPage extends javax.swing.JFrame {
     University university=null;
     Department department =null;
     static Student student=null;
+    Selection selection=null;
 
     public StudentPage(Student student) {
         initComponents();
@@ -37,7 +39,7 @@ public class StudentPage extends javax.swing.JFrame {
         country=db_query.getcountry();
         DefaultComboBoxModel dm=new DefaultComboBoxModel(country.getName().toArray());
         countryComboBox.setModel(dm);
-        
+        settable();
 
         
     }
@@ -281,6 +283,7 @@ public class StudentPage extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         selectionTable.setBackground(new java.awt.Color(102, 102, 102));
+        selectionTable.setForeground(new java.awt.Color(255, 255, 255));
         selectionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -296,14 +299,25 @@ public class StudentPage extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         selectionTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
         selectionTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
         selctionScrollPane.setViewportView(selectionTable);
+        if (selectionTable.getColumnModel().getColumnCount() > 0) {
+            selectionTable.getColumnModel().getColumn(1).setResizable(false);
+            selectionTable.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -442,6 +456,7 @@ public class StudentPage extends javax.swing.JFrame {
 
     private void addUniversityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUniversityButtonActionPerformed
         db_query.setSecim(student, department, departmentComboBox.getSelectedIndex());
+        settable();
     }//GEN-LAST:event_addUniversityButtonActionPerformed
 
     private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
@@ -483,8 +498,26 @@ public class StudentPage extends javax.swing.JFrame {
 
     private void deleteUniversityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUniversityButtonActionPerformed
         db_query.deleteSecim(student, department, departmentComboBox.getSelectedIndex());
+        settable();
     }//GEN-LAST:event_deleteUniversityButtonActionPerformed
+    private void settable(){
+        selection=db_query.getSecimler(student);
+        System.out.println("selection " +selection);
+        if(selection!=null){
+            Object row[][] = new Object[selection.getCountry().size()][3];
+            for(int i=0; i<selection.getCountry().size(); i++){
+                row[i][0]=selection.getCountry().get(i);
+                row[i][1]=selection.getUniversity().get(i);
+                row[i][2]=selection.getDepartment().get(i);
+            }
+             selectionTable.setModel(new DefaultTableModel(row,new String[]{"Country","University","Department"}));
 
+
+        }
+        else{
+             selectionTable.setModel(new DefaultTableModel(null,new String[]{"Country","University","Department"}));
+        }
+    }
     /**
      * @param args the command line arguments
      */
