@@ -25,8 +25,8 @@ public class StudentPage extends javax.swing.JFrame {
     University university=null;
     Department department =null;
     static Student student=null;
-    Selection selection=null;
-
+    Selection selection = null;
+    
     public StudentPage(Student student) {
         initComponents();
         this.student=student;
@@ -40,6 +40,21 @@ public class StudentPage extends javax.swing.JFrame {
         DefaultComboBoxModel dm=new DefaultComboBoxModel(country.getName().toArray());
         countryComboBox.setModel(dm);
         settable();
+        student=db_query.getStudentResult(student);
+        if(student.getAcceptedDepart()!=null && student.getAcceptedDepart()!=null&&student.getConsultant().getName()!=null){
+            universityName.setText("University Name : "+student.getAcceptedUni());
+            departmentName.setText("Department Name :" +student.getAcceptedDepart());
+            consultantName.setText("Consultant Name :" +student.getConsultant().getName());
+            resultLabel.setText("Result : Accepted");
+        }
+        else{
+            universityName.setText("University Name : ");
+            departmentName.setText("Department Name : " );
+            consultantName.setText("Consultant Name : " );
+            resultLabel.setText("Result : Non Accepted");
+        }
+        
+        
 
         
     }
@@ -82,6 +97,7 @@ public class StudentPage extends javax.swing.JFrame {
         resultLabel = new javax.swing.JLabel();
         universityName = new javax.swing.JLabel();
         consultantName = new javax.swing.JLabel();
+        departmentName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -282,7 +298,6 @@ public class StudentPage extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         selectionTable.setBackground(new java.awt.Color(102, 102, 102));
-        selectionTable.setForeground(new java.awt.Color(255, 255, 255));
         selectionTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -298,25 +313,14 @@ public class StudentPage extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         selectionTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
         selectionTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
         selctionScrollPane.setViewportView(selectionTable);
-        if (selectionTable.getColumnModel().getColumnCount() > 0) {
-            selectionTable.getColumnModel().getColumn(1).setResizable(false);
-            selectionTable.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -325,7 +329,7 @@ public class StudentPage extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Your must select your choice before 06.01.2021 .");
+        jLabel2.setText("Your must selection your choice until 06.01.2021.");
         jLabel2.setToolTipText("");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -377,37 +381,39 @@ public class StudentPage extends javax.swing.JFrame {
         pnlCardResult.setBackground(new java.awt.Color(102, 102, 102));
         pnlCardResult.setForeground(new java.awt.Color(255, 255, 255));
 
-        resultLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resultLabel.setText("Result:");
 
-        universityName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         universityName.setText("University Name:");
 
-        consultantName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         consultantName.setText("Consultant Name:");
+
+        departmentName.setText("Department Name:");
 
         javax.swing.GroupLayout pnlCardResultLayout = new javax.swing.GroupLayout(pnlCardResult);
         pnlCardResult.setLayout(pnlCardResultLayout);
         pnlCardResultLayout.setHorizontalGroup(
             pnlCardResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCardResultLayout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addGroup(pnlCardResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(consultantName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(universityName, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(201, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addGroup(pnlCardResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(universityName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(departmentName, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                    .addComponent(consultantName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(resultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         pnlCardResultLayout.setVerticalGroup(
             pnlCardResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCardResultLayout.createSequentialGroup()
-                .addGap(166, 166, 166)
+                .addGap(190, 190, 190)
                 .addComponent(resultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(universityName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(departmentName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(consultantName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(207, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCardResult, "pnlCardResult");
@@ -478,8 +484,9 @@ public class StudentPage extends javax.swing.JFrame {
         db_query.deleteSecim(student, department, departmentComboBox.getSelectedIndex());
         settable();
     }//GEN-LAST:event_deleteUniversityButtonActionPerformed
+
     private void settable(){
-        selection=db_query.getSecimler(student);
+        selection = db_query.getSecimler(student);
         System.out.println("selection " +selection);
         if(selection!=null){
             Object row[][] = new Object[selection.getCountry().size()][3];
@@ -544,6 +551,7 @@ public class StudentPage extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> countryComboBox;
     private javax.swing.JButton deleteUniversityButton;
     private javax.swing.JComboBox<String> departmentComboBox;
+    private javax.swing.JLabel departmentName;
     private javax.swing.JLabel examScore;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
