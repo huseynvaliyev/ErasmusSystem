@@ -25,6 +25,22 @@ public class Selection {
         this.success = success;
     }
 
+    public void setCountry(ArrayList<String> country) {
+        this.country = country;
+    }
+
+    public void setUniversity(ArrayList<String> university) {
+        this.university = university;
+    }
+
+    public void setDepartment(ArrayList<String> department) {
+        this.department = department;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
     public ArrayList<String> getCountry() {
         return country;
     }

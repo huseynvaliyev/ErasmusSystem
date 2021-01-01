@@ -84,5 +84,9 @@ public class Student {
     public void setSelection(ArrayList<Selection> selection) {
         this.selection = selection;
     }
+   
+   
+    
+
     
 }

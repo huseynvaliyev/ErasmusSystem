@@ -78,7 +78,6 @@ public class StudentPage extends javax.swing.JFrame {
         selectionTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        approveButton = new javax.swing.JButton();
         pnlCardResult = new javax.swing.JPanel();
         resultLabel = new javax.swing.JLabel();
         universityName = new javax.swing.JLabel();
@@ -326,18 +325,8 @@ public class StudentPage extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Your selections will be confirmed after pressing the button below. Think well!");
+        jLabel2.setText("Your must select your choice before 06.01.2021 .");
         jLabel2.setToolTipText("");
-
-        approveButton.setBackground(new java.awt.Color(0, 0, 0));
-        approveButton.setForeground(new java.awt.Color(255, 255, 255));
-        approveButton.setText("APPROVE");
-        approveButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
-        approveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                approveButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -345,14 +334,9 @@ public class StudentPage extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(selctionScrollPane)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(135, 135, 135))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(approveButton, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(150, 150, 150))))
+                .addContainerGap(183, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -367,9 +351,7 @@ public class StudentPage extends javax.swing.JFrame {
                 .addComponent(selctionScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(approveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addGap(24, 24, 24))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlCardUniversityLayout = new javax.swing.GroupLayout(pnlCardUniversity);
@@ -458,10 +440,6 @@ public class StudentPage extends javax.swing.JFrame {
         db_query.setSecim(student, department, departmentComboBox.getSelectedIndex());
         settable();
     }//GEN-LAST:event_addUniversityButtonActionPerformed
-
-    private void approveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_approveButtonActionPerformed
 
     private void countryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryComboBoxActionPerformed
         ArrayList<Integer> id =new ArrayList<>();
@@ -562,7 +540,6 @@ public class StudentPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addUniversityButton;
-    private javax.swing.JButton approveButton;
     private javax.swing.JLabel consultantName;
     private javax.swing.JComboBox<String> countryComboBox;
     private javax.swing.JButton deleteUniversityButton;
