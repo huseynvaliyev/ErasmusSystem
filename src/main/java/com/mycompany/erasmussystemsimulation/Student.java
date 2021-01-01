@@ -20,6 +20,8 @@ public class Student {
     private double examScore;
     private Consultant consultant;
     private ArrayList<Selection> selection;
+    private String acceptedUni;
+    private String acceptedDepart;
 
     public Student(String studentNumber, String name, String surname, String password, double examScore){
         this.studentNumber = studentNumber;
@@ -27,6 +29,22 @@ public class Student {
         this.surname = surname;
         this.password = password;
         this.examScore=examScore;
+    }
+
+    public String getAcceptedUni() {
+        return acceptedUni;
+    }
+
+    public void setAcceptedUni(String acceptedUni) {
+        this.acceptedUni = acceptedUni;
+    }
+
+    public String getAcceptedDepart() {
+        return acceptedDepart;
+    }
+
+    public void setAcceptedDepart(String acceptedDepart) {
+        this.acceptedDepart = acceptedDepart;
     }
 
     public String getStudentNumber() {

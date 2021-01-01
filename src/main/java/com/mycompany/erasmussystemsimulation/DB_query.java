@@ -159,9 +159,9 @@ public class DB_query {
                         
                 while(rs.next()){
                     name.add(rs.getString("bolum_adi"));
-                    quota.add(rs.getInt("kontenjan"));
-                    emptyQuota.add(rs.getInt("bosh_kontenjan"));
-                    id.add(rs.getInt("Id"));
+                    quota.add(rs.getInt("bosh_kontenjan"));
+                    emptyQuota.add(rs.getInt("dolu_kontenjan"));
+                    id.add(rs.getInt("id"));
                 }
                 if(name.size()!=0)
                     department = new Department(name, university, quota, emptyQuota, id);
@@ -213,7 +213,7 @@ public class DB_query {
         int status=0;
         try{
             stmt=con.createStatement();
-            status=stmt.executeUpdate("INSERT INTO public.bolumler(bolum_adi, uni_id, kontenjan, bosh_kontenjan)VALUES ('"+department.getName().get(0)+"',"+department.getUniversity().getId().get(0)+","+department.getQuota().get(0)+","+department.getQuota().get(0)+")");
+            status=stmt.executeUpdate("INSERT INTO public.bolumler(bolum_adi, uni_id, bosh_kontenjan, dolu_kontenjan)VALUES ('"+department.getName().get(0)+"',"+department.getUniversity().getId().get(0)+","+department.getQuota().get(0)+",0)");
             if(status !=0){
                 JOptionPane.showMessageDialog(null, "Department added");
             }
@@ -307,6 +307,57 @@ public class DB_query {
        }catch(SQLException e){
            JOptionPane.showMessageDialog(null, e);
        }
+   }
+   
+   public static Student getStudentResult(Student student){
+       int status =0;
+       try{
+           Consultant consultant =new Consultant(null,-1);
+           student.setConsultant(consultant);
+           stmt=con.createStatement();
+           rs=stmt.executeQuery("SELECT d.ad ,bolum_adi,uni_ad\n" +
+            "From ogrenciler o ,danisman d , secim s , bolumler b , uni u\n" +
+            "where o.ogrenci_numarasi='"+student.getStudentNumber() +"'and o.danisman_id=d.Id and o.ogrenci_numarasi=s.ogrenci_numarasi \n" +
+            "and status=1 and s.bolum_id=b.id and b.uni_id = u.id");
+           while(rs.next()){
+            student.setAcceptedUni(rs.getString("uni_ad"));
+            student.getConsultant().setName(rs.getString("ad"));
+            student.setAcceptedDepart(rs.getString("bolum_adi"));    
+       }
+          
+       }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+       }
+        return student;
+   }
+   
+   public static ArrayList<Student> getAllResult(){
+
+                      ArrayList<Student> students = new ArrayList<>();
+
+       try{
+           stmt=con.createStatement();
+           rs=stmt.executeQuery("SELECT o.ogrenci_numarasi , d.ad , b.bolum_adi,u.uni_ad\n" +
+            "From ogrenciler o ,danisman d , secim s , bolumler b , uni u\n" +
+            "where  o.danisman_id=d.Id and o.ogrenci_numarasi=s.ogrenci_numarasi \n" +
+            "and status=1 and s.bolum_id=b.id and b.uni_id = u.id " );
+           while(rs.next()){
+                 Student student = new Student(null,null,null,null,0.0);
+                Consultant consultant= new Consultant(null,-1);
+                student.setConsultant(consultant);
+               student.setStudentNumber(rs.getString("ogrenci_numarasi"));
+               student.setAcceptedDepart(rs.getString("bolum_adi"));
+               student.setAcceptedUni(rs.getString("uni_ad"));
+               student.getConsultant().setName(rs.getString("ad"));
+               students.add(student);  
+           }
+           
+           
+       }catch(SQLException e){
+           System.err.println(e);
+       }
+       System.out.println(students.size());
+   return students;    
    }
    
    

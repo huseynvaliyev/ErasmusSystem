@@ -7,10 +7,13 @@ package com.mycompany.erasmussystemsimulation;
 
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import java.util.Vector;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,9 +32,30 @@ public class AdminPage extends javax.swing.JFrame {
 
     public AdminPage() {
         initComponents();
+                 cardLayout = (CardLayout)(pnlCards.getLayout());
+
+             ArrayList<Student> students = new ArrayList();
+              students=db_query.getAllResult();
+            DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
+            Object rawData[]=new Object[4];
+            for(int i=0;i<students.size();i++){
+                rawData[0]=students.get(i).getStudentNumber();
+                rawData[1]=students.get(i).getAcceptedUni();
+                rawData[2]=students.get(i).getAcceptedDepart();
+                rawData[3]=students.get(i).getConsultant().getName();
+                model.addRow(rawData);
+            }
+
+
         
-        cardLayout = (CardLayout)(pnlCards.getLayout());
+       
+       
+        
+
+        
+
     }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,7 +115,6 @@ public class AdminPage extends javax.swing.JFrame {
         deleteCountryComboBox = new javax.swing.JComboBox<>();
         pnlCardShowResult = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         studentTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -614,13 +637,9 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("SELECTED STUDENTS");
 
-        studentTable.setBackground(new java.awt.Color(102, 102, 102));
         studentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Student Number", "University", "Department", "Consultant"
@@ -636,25 +655,24 @@ public class AdminPage extends javax.swing.JFrame {
         });
         studentTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
         studentTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
-        jScrollPane1.setViewportView(studentTable);
 
         javax.swing.GroupLayout pnlCardShowResultLayout = new javax.swing.GroupLayout(pnlCardShowResult);
         pnlCardShowResult.setLayout(pnlCardShowResultLayout);
         pnlCardShowResultLayout.setHorizontalGroup(
             pnlCardShowResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCardShowResultLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(121, Short.MAX_VALUE)
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(114, 114, 114))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+            .addComponent(studentTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlCardShowResultLayout.setVerticalGroup(
             pnlCardShowResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCardShowResultLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(studentTable, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
         );
 
         pnlCards.add(pnlCardShowResult, "pnlCardShowResult");
@@ -873,7 +891,6 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel name;
