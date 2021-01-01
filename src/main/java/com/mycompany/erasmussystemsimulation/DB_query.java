@@ -331,7 +331,34 @@ public class DB_query {
         return student;
    }
    
-   
+   public static ArrayList<Student> getAllResult(){
+
+                      ArrayList<Student> students = new ArrayList<>();
+
+       try{
+           stmt=con.createStatement();
+           rs=stmt.executeQuery("SELECT o.ogrenci_numarasi , d.ad , b.bolum_adi,u.uni_ad\n" +
+            "From ogrenciler o ,danisman d , secim s , bolumler b , uni u\n" +
+            "where  o.danisman_id=d.Id and o.ogrenci_numarasi=s.ogrenci_numarasi \n" +
+            "and status=1 and s.bolum_id=b.id and b.uni_id = u.id " );
+           while(rs.next()){
+                 Student student = new Student(null,null,null,null,0.0);
+                Consultant consultant= new Consultant(null,-1);
+                student.setConsultant(consultant);
+               student.setStudentNumber(rs.getString("ogrenci_numarasi"));
+               student.setAcceptedDepart(rs.getString("bolum_adi"));
+               student.setAcceptedUni(rs.getString("uni_ad"));
+               student.getConsultant().setName(rs.getString("ad"));
+               students.add(student);  
+           }
+           
+           
+       }catch(SQLException e){
+           System.err.println(e);
+       }
+       System.out.println(students.size());
+   return students;    
+   }
    
    
    
