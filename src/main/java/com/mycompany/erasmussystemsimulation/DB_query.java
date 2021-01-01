@@ -118,8 +118,7 @@ public class DB_query {
                 
             }
             country=new Country(name,id);
-            System.out.println(id.size()+" "+name.size());
-            System.out.println(id.get(2)+" "+name.get(2));
+;
  
             
                     
@@ -293,6 +292,23 @@ public class DB_query {
    return selection;    
    }
 
+   
+   public static void deleteCountry(String name){
+       int status=0;
+       try{
+           stmt=con.createStatement();
+           status=stmt.executeUpdate("DELETE FROM public.olke WHERE olke.ad='"+name+"'");
+           if(status!=0){
+               JOptionPane.showMessageDialog(null, "secdiyiniz ulke silindi");
+           }
+           else {
+               JOptionPane.showMessageDialog(null, "ulke silenemedi");
+           }
+       }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+       }
+   }
+   
    
    
 }

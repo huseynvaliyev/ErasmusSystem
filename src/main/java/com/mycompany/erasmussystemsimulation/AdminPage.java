@@ -796,10 +796,12 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void countryDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryDeleteButtonActionPerformed
         //Delete country querysi işleyecek burda
+        db_query.deleteCountry( deleteCountryComboBox.getItemAt(deleteCountryComboBox.getSelectedIndex()));
+        System.out.println(deleteCountryComboBox.getItemAt(deleteCountryComboBox.getSelectedIndex()));
     }//GEN-LAST:event_countryDeleteButtonActionPerformed
 
     private void deleteCountryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCountryComboBoxActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_deleteCountryComboBoxActionPerformed
 
     /**
