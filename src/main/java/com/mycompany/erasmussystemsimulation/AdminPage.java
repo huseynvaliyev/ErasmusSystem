@@ -50,6 +50,9 @@ public class AdminPage extends javax.swing.JFrame {
         surname = new javax.swing.JLabel();
         addDepartmentButton = new javax.swing.JButton();
         enterExamButton = new javax.swing.JButton();
+        deleteCountryButton = new javax.swing.JButton();
+        assignStudent = new javax.swing.JButton();
+        showResult = new javax.swing.JButton();
         pnlCards = new javax.swing.JPanel();
         pnlCardCountry = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -81,6 +84,15 @@ public class AdminPage extends javax.swing.JFrame {
         scoreTextField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         scoreAddButton = new javax.swing.JButton();
+        pnlCardDeleteCuntry = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        countryDeleteButton = new javax.swing.JButton();
+        deleteCountryComboBox = new javax.swing.JComboBox<>();
+        pnlCardShowResult = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        studentTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,6 +147,36 @@ public class AdminPage extends javax.swing.JFrame {
             }
         });
 
+        deleteCountryButton.setBackground(new java.awt.Color(0, 0, 0));
+        deleteCountryButton.setForeground(new java.awt.Color(255, 255, 255));
+        deleteCountryButton.setText("Delete Country");
+        deleteCountryButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        deleteCountryButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCountryButtonActionPerformed(evt);
+            }
+        });
+
+        assignStudent.setBackground(new java.awt.Color(0, 0, 0));
+        assignStudent.setForeground(new java.awt.Color(255, 255, 255));
+        assignStudent.setText("Assign Student");
+        assignStudent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        assignStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignStudentActionPerformed(evt);
+            }
+        });
+
+        showResult.setBackground(new java.awt.Color(0, 0, 0));
+        showResult.setForeground(new java.awt.Color(255, 255, 255));
+        showResult.setText("Show Result");
+        showResult.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white, java.awt.Color.white));
+        showResult.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showResultActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,24 +189,33 @@ public class AdminPage extends javax.swing.JFrame {
                     .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(surname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addDepartmentButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(enterExamButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(enterExamButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(deleteCountryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(assignStudent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(showResult, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(25, 25, 25)
                 .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addCountryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addUniversityButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addDepartmentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deleteCountryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(enterExamButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(assignStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(showResult, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -492,6 +543,122 @@ public class AdminPage extends javax.swing.JFrame {
 
         pnlCards.add(pnlCardExam, "pnlCardExam");
 
+        pnlCardDeleteCuntry.setBackground(new java.awt.Color(102, 102, 102));
+        pnlCardDeleteCuntry.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("DELETE COUNTRY");
+
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Country Name:");
+
+        countryDeleteButton.setBackground(new java.awt.Color(0, 0, 0));
+        countryDeleteButton.setForeground(new java.awt.Color(255, 255, 255));
+        countryDeleteButton.setText("DELETE COUNTRY");
+        countryDeleteButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.darkGray));
+        countryDeleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                countryDeleteButtonActionPerformed(evt);
+            }
+        });
+
+        deleteCountryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        deleteCountryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCountryComboBoxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlCardDeleteCuntryLayout = new javax.swing.GroupLayout(pnlCardDeleteCuntry);
+        pnlCardDeleteCuntry.setLayout(pnlCardDeleteCuntryLayout);
+        pnlCardDeleteCuntryLayout.setHorizontalGroup(
+            pnlCardDeleteCuntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCardDeleteCuntryLayout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(deleteCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCardDeleteCuntryLayout.createSequentialGroup()
+                .addContainerGap(156, Short.MAX_VALUE)
+                .addGroup(pnlCardDeleteCuntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCardDeleteCuntryLayout.createSequentialGroup()
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(145, 145, 145))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCardDeleteCuntryLayout.createSequentialGroup()
+                        .addComponent(countryDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116))))
+        );
+        pnlCardDeleteCuntryLayout.setVerticalGroup(
+            pnlCardDeleteCuntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCardDeleteCuntryLayout.createSequentialGroup()
+                .addGap(91, 91, 91)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addGroup(pnlCardDeleteCuntryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteCountryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73)
+                .addComponent(countryDeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(189, Short.MAX_VALUE))
+        );
+
+        pnlCards.add(pnlCardDeleteCuntry, "pnlDeleteCardCountry");
+
+        pnlCardShowResult.setBackground(new java.awt.Color(102, 102, 102));
+        pnlCardShowResult.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("SELECTED STUDENTS");
+
+        studentTable.setBackground(new java.awt.Color(102, 102, 102));
+        studentTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Student Number", "University", "Department", "Consultant"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        studentTable.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        studentTable.setSelectionForeground(new java.awt.Color(51, 51, 51));
+        jScrollPane1.setViewportView(studentTable);
+
+        javax.swing.GroupLayout pnlCardShowResultLayout = new javax.swing.GroupLayout(pnlCardShowResult);
+        pnlCardShowResult.setLayout(pnlCardShowResultLayout);
+        pnlCardShowResultLayout.setHorizontalGroup(
+            pnlCardShowResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCardShowResultLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(114, 114, 114))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+        );
+        pnlCardShowResultLayout.setVerticalGroup(
+            pnlCardShowResultLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCardShowResultLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
+        );
+
+        pnlCards.add(pnlCardShowResult, "pnlCardShowResult");
+
         jSplitPane2.setRightComponent(pnlCards);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -510,7 +677,6 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void addCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCountryButtonActionPerformed
         cardLayout.show(pnlCards,"pnlCardCountry");
-        
     }//GEN-LAST:event_addCountryButtonActionPerformed
 
     private void addUniversityButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUniversityButtonActionPerformed
@@ -613,6 +779,29 @@ public class AdminPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_departCountryComboBoxActionPerformed
 
+    private void deleteCountryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCountryButtonActionPerformed
+        cardLayout.show(pnlCards,"pnlDeleteCardCountry");
+        country=db_query.getcountry();
+        DefaultComboBoxModel dm=new DefaultComboBoxModel(country.getName().toArray());
+        deleteCountryComboBox.setModel(dm);
+    }//GEN-LAST:event_deleteCountryButtonActionPerformed
+
+    private void assignStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignStudentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_assignStudentActionPerformed
+
+    private void showResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showResultActionPerformed
+        cardLayout.show(pnlCards,"pnlCardShowResult");
+    }//GEN-LAST:event_showResultActionPerformed
+
+    private void countryDeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_countryDeleteButtonActionPerformed
+        //Delete country querysi işleyecek burda
+    }//GEN-LAST:event_countryDeleteButtonActionPerformed
+
+    private void deleteCountryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCountryComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteCountryComboBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -656,8 +845,12 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JButton addCountryButton;
     private javax.swing.JButton addDepartmentButton;
     private javax.swing.JButton addUniversityButton;
+    private javax.swing.JButton assignStudent;
+    private javax.swing.JButton countryDeleteButton;
     private javax.swing.JTextField countryNameTextField;
     private javax.swing.JButton countryaddButton;
+    private javax.swing.JButton deleteCountryButton;
+    private javax.swing.JComboBox<String> deleteCountryComboBox;
     private javax.swing.JComboBox<String> departCountryComboBox;
     private javax.swing.JButton departmentAddButton;
     private javax.swing.JButton enterExamButton;
@@ -666,6 +859,9 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -675,18 +871,23 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel name;
     private javax.swing.JPanel pnlCardCountry;
+    private javax.swing.JPanel pnlCardDeleteCuntry;
     private javax.swing.JPanel pnlCardDepartment;
     private javax.swing.JPanel pnlCardExam;
+    private javax.swing.JPanel pnlCardShowResult;
     private javax.swing.JPanel pnlCardUniversity;
     private javax.swing.JPanel pnlCards;
     private javax.swing.JTextField quotaTextField;
     private javax.swing.JButton scoreAddButton;
     private javax.swing.JTextField scoreTextField;
+    private javax.swing.JButton showResult;
     private javax.swing.JComboBox<String> studentComboBox;
+    private javax.swing.JTable studentTable;
     private javax.swing.JLabel surname;
     private javax.swing.JTextField uniNameTextField;
     private javax.swing.JButton universityAddButton;
