@@ -160,7 +160,7 @@ public class DB_query {
                 while(rs.next()){
                     name.add(rs.getString("bolum_adi"));
                     quota.add(rs.getInt("kontenjan"));
-                    emptyQuota.add(rs.getInt("dolu_kontenjan"));
+                    emptyQuota.add(rs.getInt("bosh_kontenjan"));
                     id.add(rs.getInt("Id"));
                 }
                 if(name.size()!=0)
@@ -213,7 +213,7 @@ public class DB_query {
         int status=0;
         try{
             stmt=con.createStatement();
-            status=stmt.executeUpdate("INSERT INTO public.bolumler(bolum_adi, uni_id, kontenjan, dolu_kontenjan)VALUES ('"+department.getName().get(0)+"',"+department.getUniversity().getId().get(0)+","+department.getQuota().get(0)+",0)");
+            status=stmt.executeUpdate("INSERT INTO public.bolumler(bolum_adi, uni_id, kontenjan, bosh_kontenjan)VALUES ('"+department.getName().get(0)+"',"+department.getUniversity().getId().get(0)+","+department.getQuota().get(0)+","+department.getQuota().get(0)+")");
             if(status !=0){
                 JOptionPane.showMessageDialog(null, "Department added");
             }
