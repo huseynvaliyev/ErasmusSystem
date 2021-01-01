@@ -26,7 +26,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         try {
+
             db_query.qosul();
+            
             ArrayList<String> tmp= new ArrayList();
             tmp.add("Danimarka");
             ArrayList <Integer> tmp_id =new ArrayList<>();

@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,7 +31,7 @@ public class DB_query {
     private static ResultSet  rs;   
     private static final String url="jdbc:postgresql://localhost:5432/Erasmus_DB";
     private static final String user="postgres";
-    private static final String password="Eldeyme01";
+    private static final String password="1110";
     
 
 
@@ -117,8 +118,7 @@ public class DB_query {
                 
             }
             country=new Country(name,id);
-            System.out.println(id.size()+" "+name.size());
-            System.out.println(id.get(2)+" "+name.get(2));
+;
  
             
                     
@@ -196,7 +196,7 @@ public class DB_query {
         int status=0;
         try{
             stmt=con.createStatement();
-            status=stmt.executeUpdate("Insert into public.uni(ad,olke_id) Values ('"+university.getName().get(0)+"',"+university.getCountry().getId().get(0)+")");
+            status=stmt.executeUpdate("Insert into public.uni(uni_ad,olke_id) Values ('"+university.getName().get(0)+"',"+university.getCountry().getId().get(0)+")");
 
             if(status !=0){
                 JOptionPane.showMessageDialog(null, "University added");
@@ -291,5 +291,24 @@ public class DB_query {
        }
    return selection;    
    }
-  
+
+   
+   public static void deleteCountry(String name){
+       int status=0;
+       try{
+           stmt=con.createStatement();
+           status=stmt.executeUpdate("DELETE FROM public.olke WHERE olke.ad='"+name+"'");
+           if(status!=0){
+               JOptionPane.showMessageDialog(null, "secdiyiniz ulke silindi");
+           }
+           else {
+               JOptionPane.showMessageDialog(null, "ulke silenemedi");
+           }
+       }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, e);
+       }
+   }
+   
+   
+   
 }
