@@ -82,8 +82,12 @@ public class DB_query {
             stmt.executeUpdate("INSERT INTO ogrenciler(ad, soyad, ogrenci_numarasi, \"Password\") VALUES ('"+student.getName()+"','"+student.getSurname()+"','"+student.getStudentNumber()+"', '"+student.getPassword()+"')");
             JOptionPane.showMessageDialog(null, "Kayit olundu");
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, student.getStudentNumber()+" numarali ogrenci bulunmaktadir");
-            System.out.println(e);
+            if(e.getSQLState().equals("23505")){
+                JOptionPane.showMessageDialog(null,student.getStudentNumber()+ "Numarali ogrenci daha onceden kayit oldu");
+            }
+            else {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
         }
     }
     public static Consultant getConsultant(Student student){
@@ -318,7 +322,7 @@ public class DB_query {
            rs=stmt.executeQuery("SELECT d.ad ,bolum_adi,uni_ad\n" +
             "From ogrenciler o ,danisman d , secim s , bolumler b , uni u\n" +
             "where o.ogrenci_numarasi='"+student.getStudentNumber() +"'and o.danisman_id=d.Id and o.ogrenci_numarasi=s.ogrenci_numarasi \n" +
-            "and status=1 and s.bolum_id=b.id and b.uni_id = u.id");
+            "and status=1 and s.bolum_id=b.\"Id\" and b.uni_id = u.id");
            while(rs.next()){
             student.setAcceptedUni(rs.getString("uni_ad"));
             student.getConsultant().setName(rs.getString("ad"));
@@ -340,7 +344,7 @@ public class DB_query {
            rs=stmt.executeQuery("SELECT o.ogrenci_numarasi , d.ad , b.bolum_adi,u.uni_ad\n" +
             "From ogrenciler o ,danisman d , secim s , bolumler b , uni u\n" +
             "where  o.danisman_id=d.Id and o.ogrenci_numarasi=s.ogrenci_numarasi \n" +
-            "and status=1 and s.bolum_id=b.id and b.uni_id = u.id " );
+            "and status=1 and s.bolum_id=b.\"Id\" and b.uni_id = u.id " );
            while(rs.next()){
                  Student student = new Student(null,null,null,null,0.0);
                 Consultant consultant= new Consultant(null,-1);
@@ -360,6 +364,24 @@ public class DB_query {
    return students;    
    }
    
+   public static void approvement(){
+       try{
+           stmt=con.createStatement();
+           rs=stmt.executeQuery("SELECT approve()");
+           if(rs.next()){
+               if(rs.getInt("approve")==1){
+                    JOptionPane.showMessageDialog(null, "Atama yapildi");
+               }
+               else{
+                   JOptionPane.showMessageDialog(null, "Daha onceden atama yapildi");
+               }
+           }
+   }
+       catch(SQLException e){
+           System.err.println(e);
+       }
+      
    
+   }
    
 }

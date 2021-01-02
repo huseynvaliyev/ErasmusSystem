@@ -34,17 +34,7 @@ public class AdminPage extends javax.swing.JFrame {
         initComponents();
                  cardLayout = (CardLayout)(pnlCards.getLayout());
 
-             ArrayList<Student> students = new ArrayList();
-              students=db_query.getAllResult();
-            DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
-            Object rawData[]=new Object[4];
-            for(int i=0;i<students.size();i++){
-                rawData[0]=students.get(i).getStudentNumber();
-                rawData[1]=students.get(i).getAcceptedUni();
-                rawData[2]=students.get(i).getAcceptedDepart();
-                rawData[3]=students.get(i).getConsultant().getName();
-                model.addRow(rawData);
-            }
+            
 
 
         
@@ -805,10 +795,27 @@ public class AdminPage extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteCountryButtonActionPerformed
 
     private void assignStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignStudentActionPerformed
+        db_query.approvement();
         // TODO add your handling code here:
     }//GEN-LAST:event_assignStudentActionPerformed
 
     private void showResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showResultActionPerformed
+
+        ArrayList<Student> students = new ArrayList();
+        students=db_query.getAllResult();
+        DefaultTableModel model = (DefaultTableModel) studentTable.getModel();
+          model.setRowCount(0);
+
+          
+        Object rawData[]=new Object[4];
+        for(int i=0;i<students.size();i++){
+          rawData[0]=students.get(i).getStudentNumber();
+          rawData[1]=students.get(i).getAcceptedUni();
+          rawData[2]=students.get(i).getAcceptedDepart();
+          rawData[3]=students.get(i).getConsultant().getName();
+          model.addRow(rawData);
+        }
+        
         cardLayout.show(pnlCards,"pnlCardShowResult");
     }//GEN-LAST:event_showResultActionPerformed
 
