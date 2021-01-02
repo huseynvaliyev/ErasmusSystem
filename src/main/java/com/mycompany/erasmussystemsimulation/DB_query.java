@@ -155,7 +155,7 @@ public class DB_query {
         Department department = null;
         try{
             stmt=con.createStatement();
-                rs=stmt.executeQuery("Select * from bolumler where uni_id="+university.getId().get(0));
+                rs=stmt.executeQuery("select * from getdepartment("+university.getId().get(0)+")");
                 ArrayList<String> name=new ArrayList<>();
                 ArrayList<Integer> quota = new ArrayList<>();
                 ArrayList<Integer>emptyQuota = new ArrayList<>();
