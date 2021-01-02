@@ -137,10 +137,10 @@ public class DB_query {
         ArrayList<Integer> id_array =new ArrayList<>();
         try{
            stmt=con.createStatement();
-           rs=stmt.executeQuery("Select * from uni where olke_id="+country.getId().get(0));
+           rs=stmt.executeQuery("Select * from public.getuniversity("+country.getId().get(0)+")");
            while(rs.next()){
                uni_name.add(rs.getString("uni_ad"));
-               id_array.add(rs.getInt("Id"));
+               id_array.add(rs.getInt("id"));
            }
            if(uni_name.size()!=0){
                University=new University(uni_name, country, id_array);
